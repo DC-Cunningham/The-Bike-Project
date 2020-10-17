@@ -41,10 +41,12 @@ export const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
   }
 
   h2 {
     font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
   }
 
   h3 {
@@ -52,11 +54,9 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   p {
-      font-family: "opensans-regular",sans-serif;
-      font-size: 18px;
-      line-height: 40px;
-      font-weight: 400;
-      color: #838c95;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
     }
 
 
