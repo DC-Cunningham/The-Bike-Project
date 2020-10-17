@@ -28,6 +28,7 @@ function Header() {
     <StyledHeader>
       <Wrapper>
         <img className="logo" src={Logo} alt="Logo" />
+        <h1>The Bike Compatibility Project</h1>
         <Menu />
       </Wrapper>
     </StyledHeader>
