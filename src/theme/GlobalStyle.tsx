@@ -38,29 +38,4 @@ export const GlobalStyle = createGlobalStyle`
     flex-direction:column;
     height: 100%;
   }
-
-  h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 800;
-  }
-
-  h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 600;
-  }
-
-  h3 {
-    font-family: 'Orbitron', sans-serif;
-  }
-
-  p {
-    font-family: 'Raleway', sans-serif;
-    font-size: 18px;
-    font-weight: 300;
-    }
-
-
-    @media screen and (max-width: 1100px) {
-
-}
 `;
