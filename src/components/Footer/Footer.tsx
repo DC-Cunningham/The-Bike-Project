@@ -5,7 +5,7 @@ import { Wrapper } from "../shared/Wrapper";
 
 const StyledFooter = styled.div`
   display: block;
-  height: 80px;
+  height: 60px;
   background: ${(props) => props.theme.primary.light};
   flex: 0 1 auto;
   text-align: center;
