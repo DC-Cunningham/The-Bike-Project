@@ -1,5 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate} from "react-router-dom"
+
+import { logout} from "../../firebase/auth"
+import { useSession } from "../../context/UserProvider"
 
 import { Wrapper } from "../shared/Wrapper";
 import { Menu } from "../Menu/Menu";
@@ -23,13 +27,27 @@ const StyledHeader = styled.div`
   }
 `;
 
-function Header() {
+interface HeaderProps {
+
+}
+
+function Header(props: HeaderProps) {
+  const navigate = useNavigate();
+  const {user} = useSession();
+
+  const logoutUser = async () => {
+  await logout();
+  navigate("/login");
+  return null;
+  };
+
   return (
     <StyledHeader>
       <Wrapper>
         <img className="logo" src={Logo} alt="Logo" />
         <h1>The Bike Compatibility Project</h1>
         <Menu />
+      {!!user && <button className="logout" onClick={logoutUser}>LOGOUT</button>}
       </Wrapper>
     </StyledHeader>
   );

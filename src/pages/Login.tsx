@@ -1,27 +1,43 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { useNavigate, useLocation } from "react-router-dom";
+
+
+import { login } from "../firebase/auth";
+
 
 import { Cell } from "../components/shared/Cell";
 
 const StyledLogin = styled.div``;
-interface IFormInputs {
-  email: string;
-  password: number;
-}
+// interface IFormInputs {
+//   email: string;
+//   password: number;
+// }
 
-const schema = yup.object().shape({
-  email: yup.string().required(),
-  password: yup.string().required(),
-});
+function Login(props: any) {
+  const { register, handleSubmit, reset } = useForm();
+  const [isLoading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-function Login() {
-  const { register, handleSubmit, errors } = useForm<IFormInputs>({
-    resolver: yupResolver(schema),
-  });
-  const onSubmit = (data: IFormInputs) => console.log(data);
+  const onSubmit = async (data: any) => {
+    let user;
+  setLoading(true);
+  try {
+    user = await login(data);
+    reset();
+  } catch (error) {
+    console.log(error);
+  }
+  if (user) {
+    console.log(user);
+    navigate(`/profile/${user.uid}`, { state: { pathname: location.pathname } });
+    
+  } else {
+    setLoading(false);
+  }
+};
 
   return (
     <Cell>
@@ -29,11 +45,12 @@ function Login() {
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           <label>Email</label>
           <input type="email" name="email" ref={register} />
-          <p>{errors.email?.message}</p>
+          {/* <p>{error.message}</p> */}
           <label>Password</label>
-          <input type="text" name="Password" ref={register} />
-          <p>{errors.password?.message}</p>
-          <input type="submit" />
+          <input type="password" name="password" ref={register} />
+          {/* <p>{error.message}</p> */}
+          {isLoading ? (<p>Loading...</p>): (<input type="submit" />)}
+          
         </form>
       </StyledLogin>
     </Cell>

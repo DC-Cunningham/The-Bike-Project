@@ -11,7 +11,7 @@ const StyledFooter = styled.div`
   text-align: center;
 
   p {
-    margin-top: 50px;
+    margin-top: 30px;
   }
 
   @media screen and (max-width: 1100px) {
