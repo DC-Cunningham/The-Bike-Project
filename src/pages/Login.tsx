@@ -1,15 +1,15 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { login } from "../firebase/auth";
-
-
 import { Cell } from "../components/shared/Cell";
 
-const StyledLogin = styled.div``;
+const StyledLogin = styled.div`
+`;
 // interface IFormInputs {
 //   email: string;
 //   password: number;
@@ -49,8 +49,8 @@ function Login(props: any) {
           <label>Password</label>
           <input type="password" name="password" ref={register} />
           {/* <p>{error.message}</p> */}
-          {isLoading ? (<p>Loading...</p>): (<input type="submit" />)}
-          
+          {isLoading ? (<FontAwesomeIcon icon={faSpinner} size="2x" className="fa-spin loading"/>): (<input type="submit" />)}
+          <p className="extraText">Don't have an account? <Link to="/register">Sign up </Link></p>
         </form>
       </StyledLogin>
     </Cell>

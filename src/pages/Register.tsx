@@ -1,11 +1,14 @@
 import React, {useState} from "react";
 import { useForm } from "react-hook-form";
-import { Route, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { signup } from "../firebase/auth";
 
 import { Cell } from "../components/shared/Cell";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons"
+
 
 const StyledRegister = styled.div``;
 
@@ -46,8 +49,9 @@ function Register(props: any) {
           <label>Password </label>
           <input type="password" name="password" ref={register} />
           {/* <p>{errorMessage}</p> */}
-          {isLoading ? (<p>Loading...</p> ):(
+          {isLoading ? (<FontAwesomeIcon icon={faSpinner} size="2x" className="fa-spin loading"/>):(
           <input type="submit" name="Register" />)}
+          <p className="extraText">Already have an account? <Link to="/login">Log In</Link></p>
         </form>
       </StyledRegister>
     </Cell>

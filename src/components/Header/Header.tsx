@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate} from "react-router-dom"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons"
+
 import { logout} from "../../firebase/auth"
 import { useSession } from "../../context/UserProvider"
 
@@ -25,8 +28,18 @@ const StyledHeader = styled.div`
       height: 80px;
     }
   }
+  .logout {
+    background: ${(props) => props.theme.primary.normal};
+    border: none;
+    border-radius: 5px;
+  }
+  .logout:hover, .logout:focus{
+    transform: scale(0.9,0.9);
+  }
+
 `;
 
+const logoutButton = <FontAwesomeIcon icon={faSignOutAlt} size="4x"/>;
 interface HeaderProps {
 
 }
@@ -47,7 +60,7 @@ function Header(props: HeaderProps) {
         <img className="logo" src={Logo} alt="Logo" />
         <h1>The Bike Compatibility Project</h1>
         <Menu />
-      {!!user && <button className="logout" onClick={logoutUser}>LOGOUT</button>}
+      {!!user && <button className="logout" onClick={logoutUser}>{logoutButton}</button>}
       </Wrapper>
     </StyledHeader>
   );

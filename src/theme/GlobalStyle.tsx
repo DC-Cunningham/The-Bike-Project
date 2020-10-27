@@ -39,8 +39,14 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
 
+p { 
+    font-family: 'Raleway', sans-serif;
+}
   /* Form Styling */
   .form {
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
   max-width: 450px;
   padding: 30px;
   margin: 40px auto;
@@ -55,10 +61,7 @@ export const GlobalStyle = createGlobalStyle`
   & > label {
     display: block;
     color: #888;
-    margin-bottom: 15px;
-    font-family: 'Raleway', sans-serif;
-    font-size: 18px;
-    font-weight: 300;
+    margin: 15px 0px;
   }
   & > input,
   textarea,
@@ -68,14 +71,15 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     width: 100%;
+    height: 40px;
     padding: 8px;
     border-radius: 6px;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border: 2px solid #fff;
-    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
-    -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
-    -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+    box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.33);
+    -moz-box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.33);
+    -webkit-box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.33);
   }
 
   & > input[type="button"],
@@ -88,8 +92,6 @@ export const GlobalStyle = createGlobalStyle`
     -moz-border-radius: 5px;
     color: #fff;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
-    font-family: 'Raleway', sans-serif;
-    font-size: 18px;
     font-weight: 600;
     -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
     -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
@@ -103,6 +105,18 @@ export const GlobalStyle = createGlobalStyle`
     -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
     -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
     box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+  }
+  & .loading {
+    width: 100%;
+    margin-top: 40px;
+    text-align: center;
+
+  }
+  & .extraText {
+    text-align: center;
+    margin-top: 30px;
+    color: #888;
+
   }
   }
 `;
