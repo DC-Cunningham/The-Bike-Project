@@ -6,7 +6,7 @@ interface UserProviderProps {
   children: React.ReactNode
 }
 
-export const UserContext = React.createContext({user: null, loading: false});
+export const UserContext = React.createContext<Partial<{user: any, loading: boolean}>>({});
 
 export const UserProvider = (props: UserProviderProps) => {
   const [session, setSession] = useState<{user: any, loading: boolean}>({ user: null, loading: false });

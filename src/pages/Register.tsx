@@ -37,6 +37,7 @@ function Register(props: any) {
     <Cell>
       <StyledRegister>
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
+         <h3>Sign Up</h3>
           <label>First Name </label>
           <input type="text" name="firstName" ref={register} />
           {/* <p>{errors.firstName?.message}</p> */}

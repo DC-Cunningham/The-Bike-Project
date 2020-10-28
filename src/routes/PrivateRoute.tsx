@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, useNavigate, useLocation } from "react-router-dom";
+import { Route, useNavigate, useLocation, Navigate } from "react-router-dom";
 
 import { useSession } from "../context/UserProvider";
 
@@ -15,8 +15,7 @@ function PrivateRoute({ path, component: Component }: PrivateRouteProps) {
 
   // if the user isnt logged in, send them to the log in screen
   if (!user) {
-    navigate("/login", { state: { pathname: location.pathname } });
-    return null;
+   return <Navigate to="/login" state={{ pathname: location.pathname }} />
   }
 
   return (

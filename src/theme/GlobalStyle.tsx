@@ -39,6 +39,10 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
 
+h1, h2, h3 {
+  font-family: 'Orbitron', sans-serif;
+}
+
 p { 
     font-family: 'Raleway', sans-serif;
 }

@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import * as yup from "yup"
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
@@ -15,11 +17,26 @@ const StyledLogin = styled.div`
 //   password: number;
 // }
 
+const formSchema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().required()
+})
+
+;
+
+interface LocationState {
+  from: {
+    pathname: string;
+  };
+}
+
 function Login(props: any) {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, errors } = useForm({
+    resolver: yupResolver(formSchema)
+  });
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
 
   const onSubmit = async (data: any) => {
     let user;
@@ -28,12 +45,12 @@ function Login(props: any) {
     user = await login(data);
     reset();
   } catch (error) {
-    console.log(error);
+    const errorMessage = error.message
+    console.log(errorMessage);
+    return errorMessage;
   }
   if (user) {
-    console.log(user);
-    navigate(`/profile/${user.uid}`, { state: { pathname: location.pathname } });
-    
+    navigate(`/profile/${user.uid}`);
   } else {
     setLoading(false);
   }
@@ -43,12 +60,13 @@ function Login(props: any) {
     <Cell>
       <StyledLogin>
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
+          <h3>Login</h3>
           <label>Email</label>
-          <input type="email" name="email" ref={register} />
-          {/* <p>{error.message}</p> */}
+          <input type="email" name="email" ref={register({required: true})} />
+          {errors.email && (<p>{errors.email.message}</p>)}
           <label>Password</label>
-          <input type="password" name="password" ref={register} />
-          {/* <p>{error.message}</p> */}
+          <input type="password" name="password" ref={register({ required: true})} />
+          {errors.password && <p>{errors.password.message}</p>}
           {isLoading ? (<FontAwesomeIcon icon={faSpinner} size="2x" className="fa-spin loading"/>): (<input type="submit" />)}
           <p className="extraText">Don't have an account? <Link to="/register">Sign up </Link></p>
         </form>
