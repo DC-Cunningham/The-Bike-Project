@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate} from "react-router-dom"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons"
+import { faSignInAlt, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons"
 
 import { logout} from "../../firebase/auth"
 import { useSession } from "../../context/UserProvider"
@@ -27,19 +27,21 @@ const StyledHeader = styled.div`
     .logo {
       height: 80px;
     }
-  }
-  .logout {
+  button {
     background: ${(props) => props.theme.primary.normal};
     border: none;
     border-radius: 5px;
   }
-  .logout:hover, .logout:focus{
+  button:hover, button:focus{
     transform: scale(0.9,0.9);
+  }
   }
 
 `;
 
-const logoutButton = <FontAwesomeIcon icon={faSignOutAlt} size="4x"/>;
+const logoutButton = <FontAwesomeIcon icon={faSignOutAlt} size="2x"/>;
+const profileButton = <FontAwesomeIcon icon={faUser} size="2x"/>;
+const loginButton = <FontAwesomeIcon icon={faSignInAlt} size="2x"/>;
 interface HeaderProps {
 
 }
@@ -54,13 +56,21 @@ function Header(props: HeaderProps) {
   return null;
   };
 
+  const loginUser = () => {
+    navigate("/login");
+    };
+
+  const profile = () => {
+    navigate(`/profile/${user.uid}`);
+    };
+  
   return (
     <StyledHeader>
       <Wrapper>
         <img className="logo" src={Logo} alt="Logo" />
         <h1>The Bike Compatibility Project</h1>
         <Menu />
-      {!!user && <button className="logout" onClick={logoutUser}>{logoutButton}</button>}
+      {user ? (<div><button onClick={profile}>{profileButton}</button><button onClick={logoutUser}>{logoutButton}</button></div>):(<div><button onClick={loginUser}>{loginButton}</button></div>)}
       </Wrapper>
     </StyledHeader>
   );
